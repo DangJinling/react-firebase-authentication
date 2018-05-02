@@ -8,88 +8,92 @@ import * as routes from '../../constants/routes';
 
 const SignInPage = ({ history }) =>
   <div>
-    <h1>SignIn</h1>
-    <SignInForm history={history} />
-    <PasswordForgetLink />
-    <SignUpLink />
+	  <h1>SignIn</h1>
+	  <SignInForm history={history} />
+	  <PasswordForgetLink />
+	  <SignUpLink />
   </div>
 
 const updateByPropertyName = (propertyName, value) => () => ({
-  [propertyName]: value,
+	[propertyName]: value,
 });
 
 const INITIAL_STATE = {
-  email: '',
-  password: '',
-  error: null,
+	email: '',
+	password: '',
+	error: null,
 };
 
 class SignInForm extends Component {
-  constructor(props) {
-    super(props);
+	constructor(props) {
+		super(props);
 
-    this.state = { ...INITIAL_STATE };
-  }
+		this.state = { ...INITIAL_STATE };
+	}
 
-  onSubmit = (event) => {
-    const {
-      email,
-      password,
-    } = this.state;
+	onSubmit = (event) => {
+		const {
+			email,
+			password,
+		} = this.state;
 
-    const {
-      history,
-    } = this.props;
+		const {
+			history,
+		} = this.props;
 
-    auth.doSignInWithEmailAndPassword(email, password)
-      .then(() => {
-        this.setState(() => ({ ...INITIAL_STATE }));
-        history.push(routes.HOME);
-      })
-      .catch(error => {
-        this.setState(updateByPropertyName('error', error));
-      });
+		auth.doSignInWithEmailAndPassword(email, password)
+		  .then(() => {
+			  this.setState(() => ({ ...INITIAL_STATE }));
+			  history.push(routes.HOME);
+		  })
+		  .catch(error => {
+			  this.setState(updateByPropertyName('error', error));
+		  });
 
-    event.preventDefault();
-  }
+		event.preventDefault();
+	}
 
-  render() {
-    const {
-      email,
-      password,
-      error,
-    } = this.state;
+	render() {
+		const {
+			email,
+			password,
+			error,
+		} = this.state;
 
-    const isInvalid =
-      password === '' ||
-      email === '';
+		const isInvalid =
+		  password === '' ||
+		  email === '';
 
-    return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          value={email}
-          onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          value={password}
-          onChange={event => this.setState(updateByPropertyName('password', event.target.value))}
-          type="password"
-          placeholder="Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Sign In
-        </button>
+		return (
+		  <div className='signin-form'>
+			  <form onSubmit={this.onSubmit} >
+				  <input
+					value={email}
+					onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
+					type="text"
+					placeholder="Email Address"
+					name="email"
+				  />
+				  <input
+					value={password}
+					onChange={event => this.setState(updateByPropertyName('password', event.target.value))}
+					type="password"
+					placeholder="Password"
+					name="password"
+				  />
+				  <button disabled={isInvalid} type="submit">
+					  Sign In
+				  </button>
 
-        { error && <p>{error.message}</p> }
-      </form>
-    );
-  }
+				  { error && <p>{error.message}</p> }
+			  </form>
+		  </div>
+		);
+	}
 }
 
 export default withRouter(SignInPage);
 
 export {
-  SignInForm,
+	SignInForm,
 };

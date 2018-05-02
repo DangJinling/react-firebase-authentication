@@ -1,21 +1,21 @@
 import * as firebase from 'firebase';
 
 const prodConfig = {
-  apiKey: YOUR_API_KEY,
-  authDomain: YOUR_AUTH_DOMAIN,
-  databaseURL: YOUR_DATABASE_URL,
-  projectId: YOUR_PROJECT_ID,
-  storageBucket: '',
-  messagingSenderId: YOUR_MESSAGING_SENDER_ID,
+	apiKey: "AIzaSyBXBmxNE1Wfu4MnQOkNO4-QOEOObresfi4",
+	authDomain: "react-puppeteer.firebaseapp.com",
+	databaseURL: "https://react-puppeteer.firebaseio.com",
+	projectId: "react-puppeteer",
+	storageBucket: "react-puppeteer.appspot.com",
+	messagingSenderId: "988866756272"
 };
 
 const devConfig = {
-  apiKey: YOUR_API_KEY,
-  authDomain: YOUR_AUTH_DOMAIN,
-  databaseURL: YOUR_DATABASE_URL,
-  projectId: YOUR_PROJECT_ID,
-  storageBucket: '',
-  messagingSenderId: YOUR_MESSAGING_SENDER_ID,
+	apiKey: "AIzaSyBXBmxNE1Wfu4MnQOkNO4-QOEOObresfi4",
+	authDomain: "react-puppeteer.firebaseapp.com",
+	databaseURL: "https://react-puppeteer.firebaseio.com",
+	projectId: "react-puppeteer",
+	storageBucket: "react-puppeteer.appspot.com",
+	messagingSenderId: "988866756272"
 };
 
 const config = process.env.NODE_ENV === 'production'
@@ -23,13 +23,13 @@ const config = process.env.NODE_ENV === 'production'
   : devConfig;
 
 if (!firebase.apps.length) {
-  firebase.initializeApp(config);
+	firebase.initializeApp(config);
 }
 
 const db = firebase.database();
 const auth = firebase.auth();
 
 export {
-  db,
-  auth,
+	db,
+	auth,
 };
